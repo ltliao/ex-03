@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="script.js"></script>
+     <link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+    <h3>HELLO!D3.js</h3>
+    <h1>D3.js Course Homework W2</h1>
+    <ul>
+        <li>廖婨廷</li>
+        <li>20170716</li>
+        <li>EX3:D3.js</li>
+
+    </ul>
+
+    <h2>D3.js-botton啟動</h2>
+    <p></p>
+    <input type="button" onclick="launch()" value="啟動">
+    <hr>
+    <h2>D3.js-動態載入SVG使用法</h2>
+    <script>
+        d3.select("body")
+            .append("svg")
+            .attr({
+                width: 300,
+                height: 200,
+                id: "svg2"
+            });
+
+        var svg2 = d3.select("#svg2");
+
+        svg2.append("rect")
+            .attr({
+                "x": 0,
+                "y": 0,
+                "width": 300,
+                "height": 200,
+                "fill": "#FDF5E6"
+            });
+
+        svg2.append("circle")
+            .attr({
+                cx: 150,
+                cy: 120,
+                r: 15
+            });
+
+        svg2.append("rect")
+            .attr({
+                x: 160,
+                y: 45,
+                width: 5,
+                height: 78
+            });
+        for (var i = 0; i < 5; i = i + 1) {
+            svg2.append("rect")
+                .attr({
+                    x: 0,
+                    y: 45 + 30 * i,
+                    width: 300,
+                    height: 1
+                })
+        }
+
+
+        svg2.append("text")
+            .attr({
+                x: 168,
+                y: 200,
+                "font-size": 48,
+                "text-anchor": "end"
+            }).text("A");
+    </script>
+
+    <hr>
+    <h2>D3.js-迴圈搭配亂數函式/長條圖</h2>
+    <svg width="400" height="300" id="svg3"></svg>
+    <script>
+        var svg3 = d3.select("#svg3");
+
+        for (var i = 0; i < 20; i++) {
+            var thisNum = random(20, 300);
+            svg3.append("rect")
+                .attr({
+                    x: 10,
+                    y: 10 + 12 * i,
+                    width: thisNum,
+                    height: 10,
+                    fill: "red"
+                });
+            svg3.append("text")
+                .attr({
+                    x: thisNum + 15,
+                    y: 20 + 12 * i,
+                    "font-size": 12
+                })
+                .text(thisNum);
+        }
+    </script>
+
+    <hr>
+
+    <h2>D3.js-迴圈搭配亂數函式/折線圖</h2>
+    <svg width="400" height="300" id="svg4"></svg>
+    <script>
+        var svg4 = d3.select("#svg4");
+
+        var lastNum = 0;
+        var points = "10,10 ";
+
+        for (var i = 0; i < 20; i++) {
+            var thisNum = random(20, 300);
+
+            points = points + (10 + thisNum) + "," + (10 + 12 * (i + 1)) + " ";
+
+            svg4.append('circle')
+                .attr({
+                    cx: 10 + thisNum,
+                    cy: 10 + 12 * (i + 1),
+                    r: 3,
+                    fill: "red"
+                });
+
+            svg4.append("text")
+                .attr({
+                    x: thisNum + 15,
+                    y: 25 + 12 * i,
+                    "font-size": 12
+                }).text(thisNum);
+            lastNum = thisNum;
+        }
+        points = points + "10," + (21 * 12 + 10);
+        svg4.append("polyline")
+            .attr({
+                points: points,
+                "fill": "rgba(0,0,0,0)",
+                "stroke": "#333",
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+p {
+    border: 2px solid grey;
+    height: 1.5em;
+    width: 4em;
+    font-size: 1.5em;
+    font-family:fantasy;
+}
+
+input[type="button"] {
+    width: 4em;
+    font-size: 1em;
+}
+
+body{
+    background: #e8e8e8;
+    color:#37455c;
+}
+
+h3{
+    color:dimgray;
+}
+
+h1{
+    color:#ff8096;
+}
